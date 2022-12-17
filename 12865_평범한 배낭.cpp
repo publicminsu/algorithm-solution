@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-int dp[100001];
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -10,6 +9,7 @@ int main()
     cout.tie(NULL);
     int N, K;
     cin >> N >> K;
+    vector<int> dp(K + 1);
     while (N--)
     {
         int W, V;
