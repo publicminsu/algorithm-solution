@@ -6,7 +6,7 @@ int map[101][101][101];
 int dx[] = {-1, 1, 0, 0, 0, 0}, dy[] = {0, 0, -1, 1, 0, 0}, dz[] = {0, 0, 0, 0, -1, 1};
 struct node
 {
-    int z, y, x, day;
+    int z, y, x;
 };
 int main()
 {
@@ -14,7 +14,7 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
     queue<node> bfs;
-    int M, N, H, count = 0, day = 1;
+    int M, N, H, count = 0, day = 0;
     cin >> M >> N >> H;
     for (int i = 0; i < H; ++i)
     {
@@ -25,7 +25,7 @@ int main()
                 int n;
                 cin >> n;
                 if (n == 1)
-                    bfs.push({i, j, k, 1});
+                    bfs.push({i, j, k});
                 else if (n == 0)
                     ++count;
                 map[i][j][k] = n;
@@ -41,14 +41,15 @@ int main()
     {
         node n = bfs.front();
         bfs.pop();
+        int nextDay = map[n.z][n.y][n.x] + 1;
         for (int i = 0; i < 6; ++i)
         {
-            node next = {n.z + dz[i], n.y + dy[i], n.x + dx[i], n.day + 1};
+            node next = {n.z + dz[i], n.y + dy[i], n.x + dx[i]};
             if (next.z >= 0 && next.z < H && next.y >= 0 && next.y < N && next.x >= 0 && next.x < M && !map[next.z][next.y][next.x])
             {
-                map[next.z][next.y][next.x] = day;
+                map[next.z][next.y][next.x] = nextDay;
                 bfs.push(next);
-                day = max(day, n.day);
+                day = max(day, nextDay);
                 --count;
             }
         }
@@ -59,7 +60,7 @@ int main()
     }
     else
     {
-        cout << day;
+        cout << day - 1;
     }
     return 0;
 }
