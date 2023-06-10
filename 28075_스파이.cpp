@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 using namespace std;
 int progress[2][3], N, M, ret = 0;
 void dfs(int day, int sum, int prevJ)
