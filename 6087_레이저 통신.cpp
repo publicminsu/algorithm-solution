@@ -3,65 +3,60 @@
 #include <climits>
 #include <vector>
 using namespace std;
-struct node
-{
-    int y, x, dy, dx, mirror;
-};
+
+typedef pair<int, int> pii;
+typedef pair<pii, pii> ppp; // 거울 개수, 방향, 위치
 int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    ios_base::sync_with_stdio(0), cin.tie(0);
     int W, H;
-    pair<int, int> start, end;
     cin >> W >> H;
     vector<vector<int>> map(H, vector<int>(W, INT_MAX));
-    queue<node> bfs;
-    bool init = false;
+    vector<vector<vector<bool>>> isVisted(H, vector<vector<bool>>(W, vector<bool>(4)));
+    priority_queue<ppp, vector<ppp>, greater<ppp>> pq;
+    pii end;
     for (int i = 0; i < H; ++i)
-    {
         for (int j = 0; j < W; ++j)
         {
             char c;
             cin >> c;
-            if (c == '.')
-                map[i][j] = INT_MAX;
-            else if (c == '*')
+            if (c == '*')
                 map[i][j] = -1;
-            else
+            else if (c == 'C')
             {
-                if (init)
+                if (pq.empty())
                 {
-                    end = {i, j};
-                    map[i][j] = INT_MAX;
+                    pq.push({{0, -1}, {i, j}});
+                    map[i][j] = 0;
+                    isVisted[i][j][0] = isVisted[i][j][1] = isVisted[i][j][2] = isVisted[i][j][3] = true;
                 }
                 else
-                {
-                    init = true;
-                    start = {i, j};
-                    map[i][j] = -1;
-                }
+                    end = {i, j};
             }
         }
-    }
-    bfs.push({start.first, start.second, 0, 0, -1});
-    while (!bfs.empty())
+    while (!pq.empty())
     {
-        node cur = bfs.front();
-        bfs.pop();
-        for (int i = 0; i < 4; ++i)
+        ppp cur = pq.top();
+        pq.pop();
+        int y = cur.second.first, x = cur.second.second, mirror = cur.first.first;
+        if (map[y][x] < mirror)
+            continue;
+        for (int dir = 0; dir < 4; ++dir)
         {
-            int weight = ((cur.dy == dy[i] && cur.dx == dx[i]) ? 0 : 1);
-            node next = {cur.y + dy[i], cur.x + dx[i], dy[i], dx[i], cur.mirror + weight};
-            if (next.y < 0 || next.x < 0 || next.y >= H || next.x >= W)
+            int weight = cur.first.second == dir ? 0 : 1, nextMirror = mirror + weight;
+            int ny = y + dy[dir], nx = x + dx[dir];
+
+            ppp next = {{nextMirror, dir}, {ny, nx}};
+            if (ny < 0 || nx < 0 || ny >= H || nx >= W || map[ny][nx] < nextMirror || (isVisted[ny][nx][dir] && map[ny][nx] == nextMirror))
                 continue;
-            if (next.mirror > map[next.y][next.x])
-                continue;
-            map[next.y][next.x] = next.mirror;
-            bfs.push(next);
+            isVisted[ny][nx][dir] = true;
+            map[ny][nx] = nextMirror;
+            if (ny == end.first && nx == end.second)
+                break;
+            pq.push(next);
         }
     }
-    cout << map[end.first][end.second];
+    cout << map[end.first][end.second] - 1;
     return 0;
 }
