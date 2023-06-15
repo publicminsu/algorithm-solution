@@ -25,7 +25,11 @@ int main()
         ll sum = 0;
         mid = (low + high) >> 1;
         for (int time : times)
+        {
             sum += mid / time;
+            if (sum >= M)
+                break;
+        }
         if (sum >= M)
         {
             high = mid - 1;
