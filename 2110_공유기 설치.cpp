@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-typedef unsigned long long ull;
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
@@ -12,11 +11,11 @@ int main()
     for (int i = 0; i < N; ++i)
         cin >> house[i];
     sort(house.begin(), house.end());
-    ull left = 0, mid, right = N * 1000000000, ret;
+    int left = 0, mid, right = house[N - 1], ret;
     while (left <= right)
     {
         mid = (left + right) >> 1;
-        ull pos = house[0] + mid;
+        int pos = house[0] + mid;
         int cnt = 1;
         for (int i = 1; i < N; ++i)
         {
