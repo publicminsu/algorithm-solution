@@ -8,23 +8,15 @@ int main()
     cin >> N >> M;
     vector<vector<int>> map(N + 1, vector<int>(N + 1));
     for (int i = 1; i <= N; ++i)
-    {
         for (int j = 1; j <= N; ++j)
         {
             cin >> map[i][j];
             if (j != 1)
                 map[i][j] += map[i][j - 1];
         }
-    }
     for (int i = 2; i <= N; ++i)
-    {
         for (int j = 1; j <= N; ++j)
-        {
-            if (i != 1)
-                map[i][j] += map[i - 1][j];
-        }
-    }
-
+            map[i][j] += map[i - 1][j];
     while (M--)
     {
         cin >> x1 >> y1 >> x2 >> y2;
