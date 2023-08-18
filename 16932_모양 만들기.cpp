@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <unordered_set>
+#include <set>
 using namespace std;
 typedef pair<int, int> pii;
 int N, M, dy[] = {1, -1, 0, 0}, dx[] = {0, 0, 1, -1}, ret = 0, idx = 0;
 vector<vector<int>> map, group;
 vector<int> groupSum;
-unordered_set<int> us;
 void bfs(int y, int x)
 {
     int sum = 1;
@@ -51,15 +50,15 @@ int main()
             else
             {
                 int sum = 1;
-                us.clear();
+                set<int> s;
                 for (int k = 0; k < 4; ++k)
                 {
                     int ny = i + dy[k], nx = j + dx[k];
-                    if (ny < 0 || nx < 0 || ny >= N || nx >= M || !map[ny][nx] || us.find(group[ny][nx]) != us.end())
+                    if (ny < 0 || nx < 0 || ny >= N || nx >= M || !map[ny][nx] || s.find(group[ny][nx]) != s.end())
                         continue;
                     if (group[ny][nx] == -1)
                         bfs(ny, nx);
-                    us.insert(group[ny][nx]);
+                    s.insert(group[ny][nx]);
                     sum += groupSum[group[ny][nx]];
                 }
                 ret = max(ret, sum);
