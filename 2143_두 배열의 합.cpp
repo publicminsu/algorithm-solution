@@ -5,11 +5,11 @@ typedef long long ll;
 using namespace std;
 void vInput(vector<ll> &v, int &size)
 {
-    v.emplace_back(0);
+    v.push_back(0);
     for (int i = 1, j; i <= size; ++i)
     {
         cin >> j;
-        v.emplace_back(j);
+        v.push_back(j);
         v[i] += v[i - 1];
     }
 }
@@ -17,7 +17,7 @@ void getSum(vector<ll> &v, vector<ll> &vSum)
 {
     for (int i = 0; i < v.size(); ++i)
         for (int j = i + 1; j < v.size(); ++j)
-            vSum.emplace_back(v[j] - v[i]);
+            vSum.push_back(v[j] - v[i]);
     sort(vSum.begin(), vSum.end());
 }
 int main()
