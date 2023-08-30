@@ -58,7 +58,7 @@ int main()
             wolfPQ.push({nextValue, next.second, !isRun});
         }
     }
-    for (int i = 1; i <= N; ++i)
+    for (int i = 2; i <= N; ++i)
         if (foxDist[i] < wolfDist[0][i] && foxDist[i] < wolfDist[1][i])
             ++cnt;
     cout << cnt;
