@@ -1,10 +1,11 @@
 #include <iostream>
 #include <queue>
 using namespace std;
+typedef pair<int, int> pii;
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
-    priority_queue<int> nPQ, pPQ;
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
     int N, x;
     cin >> N;
     while (N--)
@@ -12,24 +13,14 @@ int main()
         cin >> x;
         if (x)
         {
-            if (x > 0)
-                pPQ.push(-x);
-            else
-                nPQ.push(x);
+            pq.push({abs(x), x});
         }
         else
         {
-            if (pPQ.empty() || nPQ.empty())
-                if (pPQ.empty() && nPQ.empty())
-                    cout << 0;
-                else if (pPQ.empty())
-                    cout << nPQ.top(), nPQ.pop();
-                else
-                    cout << -pPQ.top(), pPQ.pop();
-            else if (pPQ.top() > nPQ.top())
-                cout << -pPQ.top(), pPQ.pop();
+            if (pq.empty())
+                cout << 0;
             else
-                cout << nPQ.top(), nPQ.pop();
+                cout << pq.top().second, pq.pop();
             cout << "\n";
         }
     }
