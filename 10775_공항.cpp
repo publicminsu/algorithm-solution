@@ -10,10 +10,7 @@ int find(int cur)
     else
     {
         if (cur == 0)
-        {
-            cout << cnt;
-            exit(0);
-        }
+            return 0;
         return parent[cur] = cur;
     }
 }
@@ -25,8 +22,10 @@ int main()
     while (P--)
     {
         cin >> g;
-        parent[g] = find(g);
-        ++cnt;
+        if (find(g))
+            ++cnt;
+        else
+            break;
     }
     cout << cnt;
     return 0;
