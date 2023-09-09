@@ -28,14 +28,12 @@ void drop(bool isBlue, int x, int y, int t, int idx)
     {
         if (map[isBlue][i][y]) // 해당 위치에 블럭이 있다면 이전 높이에 설치
         {
-            --i;
-            setBlock(isBlue, i, y, t, idx);
+            setBlock(isBlue, i - 1, y, t, idx);
             return;
         }
         else if (t == 2 && map[isBlue][i][y + 1]) // 가로가 긴 경우
         {
-            --i;
-            setBlock(isBlue, i, y, t, idx);
+            setBlock(isBlue, i - 1, y, t, idx);
             return;
         }
     }
