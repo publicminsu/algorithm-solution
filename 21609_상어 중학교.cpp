@@ -52,7 +52,7 @@ void bfs(int y, int x)
             q.push(next);
         }
     }
-    if (cnt > maxSize || (cnt == maxSize && (rainbowCnt > rainbowMaxSize || (rainbowCnt == rainbowMaxSize && (y > r || (y == r && x > c))))))
+    if (cnt > maxSize || (cnt == maxSize && (rainbowCnt > rainbowMaxSize || (rainbowCnt == rainbowMaxSize))))
     {
         maxSize = cnt;
         rainbowMaxSize = rainbowCnt;
