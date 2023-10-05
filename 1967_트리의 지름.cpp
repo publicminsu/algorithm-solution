@@ -16,16 +16,19 @@ int dfs(int cur)
         {
             int child = dfs(next.first) + next.second;
             cnt = max(child, cnt);
+            // DFS를 마친 값을 저장해 줘야 한다. (얼마나 긴 값인지 알아야 하므로)
             buffer.push_back(child);
         }
-    if (buffer.size() <= 2)
+    if (buffer.size() <= 2) // 2개 이하인가?
         for (int i : buffer)
             sum += i;
     else
     {
+        // 2개 이상이면 가장 큰 2개의 값을 더해준다.
         sort(buffer.begin(), buffer.end(), greater<int>());
         sum = buffer[0] + buffer[1];
     }
+    // 가장 긴 트리의 지름인지 확인해 준다.
     ret = max(ret, sum);
     return cnt;
 }
