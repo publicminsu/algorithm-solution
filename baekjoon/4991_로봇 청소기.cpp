@@ -47,6 +47,10 @@ void bfs(int y, int x)
 }
 void dfs(int cur, int mask, int sum)
 {
+    if (sum >= ret) // 이미 더 적은 값으로 도달했다면
+    {
+        return;
+    }
     if (mask == full)
     {
         ret = min(ret, sum);
