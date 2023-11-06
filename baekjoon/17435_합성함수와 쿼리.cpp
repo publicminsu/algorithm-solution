@@ -35,7 +35,7 @@ void search()
         cin >> n >> x;
         while (n)
         {
-            if (n % 2) // 건너뛸 수 있는지 확인
+            if (n & 1) // 건너뛸 수 있는지 확인
             {
                 x = fx[jump][x];
             }
