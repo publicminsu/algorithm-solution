@@ -1,26 +1,11 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-struct node
-{
-    int value;
-    node *left, *right;
-};
 vector<int> inorder, postorder, inorderIndex, postorderIndex;
 int n;
-void preorder(node *curNode)
+void makeTree(int start, int end, int curValue)
 {
-    if (curNode == nullptr)
-    {
-        return;
-    }
-    cout << curNode->value << " ";
-    preorder(curNode->left);
-    preorder(curNode->right);
-}
-void makeTree(node *curNode, int start, int end)
-{
-    int curInorderIndex = inorderIndex[curNode->value];
+    int curInorderIndex = inorderIndex[curValue];
     int leftPostIndex = -1, rightPostIndex = -1;
     // 가장 높은 포스트 오더 인덱스를 가져옴
     for (int i = start; i < curInorderIndex; ++i)
@@ -31,19 +16,17 @@ void makeTree(node *curNode, int start, int end)
     {
         rightPostIndex = max(postorderIndex[inorder[i]], rightPostIndex);
     }
+
+    cout << curValue << " ";
     if (leftPostIndex != -1)
     {
-        node *left = new node();
-        left->value = postorder[leftPostIndex];
-        curNode->left = left;
-        makeTree(left, start, curInorderIndex);
+        int leftVal = postorder[leftPostIndex];
+        makeTree(start, curInorderIndex, leftVal);
     }
     if (rightPostIndex != -1)
     {
-        node *right = new node();
-        right->value = postorder[rightPostIndex];
-        curNode->right = right;
-        makeTree(right, curInorderIndex + 1, end);
+        int rightVal = postorder[rightPostIndex];
+        makeTree(curInorderIndex + 1, end, rightVal);
     }
 }
 void input()
@@ -69,10 +52,7 @@ void input()
 int main()
 {
     input();
-    node *head = new node();
     int headVal = postorder.back();
-    head->value = headVal;
-    makeTree(head, 0, n);
-    preorder(head);
+    makeTree(0, n, headVal);
     return 0;
 }
