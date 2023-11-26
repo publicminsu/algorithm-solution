@@ -5,7 +5,7 @@
 using namespace std;
 vector<int> kevin;
 vector<vector<int>> graph;
-int N, M, ret, minKevin = 101;
+int N, M, ret, minKevin = 9999;
 int bfs(int start)
 {
     int ret = 0;
@@ -19,7 +19,7 @@ int bfs(int start)
         q.pop();
         for (int next : graph[cur])
         {
-            if (kevin[next] != -1)
+            if (kevin[next] != -1) // 이미 방문했다면
                 continue;
             kevin[next] = kevin[cur] + 1;
             ret += kevin[next];
@@ -44,7 +44,7 @@ int main()
     for (int i = 1; i <= N; ++i)
     {
         int k = bfs(i);
-        if (minKevin > k)
+        if (minKevin > k) // 케빈 베이컨의 수가 더 작다면
         {
             ret = i;
             minKevin = k;
