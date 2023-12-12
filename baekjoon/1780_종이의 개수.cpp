@@ -33,7 +33,7 @@ int check(const int &startY, const int &endY, const int &startX, const int &endX
     }
     return first;
 }
-void recur(int startY, int endY, int startX, int endX)
+void recur(const int &startY, const int &endY, const int &startX, const int &endX)
 {
     int ret = check(startY, endY, startX, endX);
 
