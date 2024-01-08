@@ -1,19 +1,19 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <limits>
 using namespace std;
 using pii = pair<int, int>;
+#define INF 987654321
 vector<pii> countries;
 int n, fullBitMask;
-double answer = numeric_limits<double>::max();
-double getDistance(pii a, pii b)
+float answer = INF;
+float getDistance(pii a, pii b)
 {
-    double sub1 = a.first - b.first;
-    double sub2 = a.second - b.second;
+    float sub1 = a.first - b.first;
+    float sub2 = a.second - b.second;
     return sqrt(sub1 * sub1 + sub2 * sub2);
 }
-void dfs(int cur, double sum, int bitMask)
+void dfs(int cur, float sum, int bitMask)
 {
     if (sum >= answer)
     {
@@ -21,7 +21,7 @@ void dfs(int cur, double sum, int bitMask)
     }
     if (fullBitMask == bitMask) // 모두 방문한 경우
     {
-        double distance = getDistance(countries[cur], countries[0]);
+        float distance = getDistance(countries[cur], countries[0]);
         answer = min(answer, sum + distance);
         return;
     }
@@ -31,7 +31,7 @@ void dfs(int cur, double sum, int bitMask)
         {
             continue;
         }
-        double distance = getDistance(countries[cur], countries[i]);
+        float distance = getDistance(countries[cur], countries[i]);
         dfs(i, sum + distance, (bitMask | (1 << i)));
     }
 }
@@ -40,7 +40,6 @@ int main()
     ios::sync_with_stdio(0), cin.tie(0);
     cin >> n;
     cout << fixed;
-    cout.precision(8);
 
     countries = vector<pii>(n);
     fullBitMask = (1 << n) - 1;
@@ -51,5 +50,5 @@ int main()
     }
 
     dfs(0, 0, 1 << 0);
-    cout << (answer == numeric_limits<double>::max() ? -1 : answer); // 불가능할 경우 -1
+    cout << answer;
 }
