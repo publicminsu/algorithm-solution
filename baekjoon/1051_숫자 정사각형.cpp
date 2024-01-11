@@ -29,11 +29,12 @@ bool isSquare(int width)
 }
 void solve()
 {
-    for (int width = 1; width < min(N, M); ++width)
+    for (int width = min(N, M); width >= 0; --width)
     {
         if (isSquare(width)) // 정사각형 있는지 확인
         {
             answer = width + 1;
+            break;
         }
     }
     cout << answer * answer;
