@@ -1,33 +1,25 @@
 #include <iostream>
-#include <vector>
 using namespace std;
-vector<int> A;
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
-    int N, answer = 1, i = 0, j = 1;
+    int N, answer = 1, curNum, prevNum, cnt = 1;
     cin >> N;
-    A = vector<int>(N);
-    for (int &a : A)
+    cin >> prevNum;
+    while (--N)
     {
-        cin >> a;
-    }
-    while (j < N)
-    {
-        if (A[i] <= A[j]) // 감소하지 않는다면 범위를 좁힌다.
+        cin >> curNum;
+        if (curNum < prevNum) // 감소하는 부분
         {
-            ++i;
+            ++cnt;
         }
-        else
+        else // 감소하지 않는 부분
         {
-            ++j;
-        }
-        answer = max(answer, j - i);
-        if (i == j)
-        {
-            ++j;
+            answer = max(answer, cnt);
+            cnt = 1;
+            prevNum = curNum;
         }
     }
-    cout << answer;
+    cout << max(answer, cnt);
     return 0;
 }
