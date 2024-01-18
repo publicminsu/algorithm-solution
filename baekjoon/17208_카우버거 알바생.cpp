@@ -26,8 +26,12 @@ int main()
         {
             for (int k = K; k >= fry; --k)
             {
-                dp[j][k] = max(dp[j][k], dp[j - burger][k - fry] + 1); // 유지하기 vs 요구 개수 챙기기
-                answer = max(answer, dp[j][k]);
+                int nextDP = dp[j - burger][k - fry] + 1; // 치즈버거, 감자튀김의 요구 개수를 감당할 수 있는 값
+                if (nextDP > dp[j][k])                    // 새로운 값이 이전 값보다 크다면
+                {
+                    dp[j][k] = nextDP;
+                    answer = max(answer, dp[j][k]);
+                }
             }
         }
     }
