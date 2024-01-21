@@ -1,29 +1,31 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
+#include <algorithm>
 using namespace std;
 int T, N, M, num;
-unordered_set<int> us;
+vector<int> note;
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
     cin >> T;
     while (T--)
     {
-        us.clear();
+        note.clear();
 
         cin >> N;
         while (N--)
         {
             cin >> num;
-            us.insert(num);
+            note.push_back(num);
         }
+
+        sort(note.begin(), note.end());
 
         cin >> M;
         while (M--)
         {
             cin >> num;
-            cout << (us.find(num) != us.end()) << "\n"; // 존재하는지 확인
+            cout << binary_search(note.begin(), note.end(), num) << "\n"; // 존재하는지 확인
         }
     }
 
