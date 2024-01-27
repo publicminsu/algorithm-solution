@@ -14,7 +14,7 @@ int main()
     {
         cin >> box;
 
-        vector<int>::iterator iter = upper_bound(boxes.begin(), boxes.end(), box - 1); // 처음으로 초과하는 값 찾기
+        vector<int>::iterator iter = lower_bound(boxes.begin(), boxes.end(), box); // 처음으로 같거나 큰 값 찾기
 
         if (iter == boxes.end()) // 존재하지 않으면 뒤에 추가
         {
