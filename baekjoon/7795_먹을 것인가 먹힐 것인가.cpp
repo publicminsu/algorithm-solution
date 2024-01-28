@@ -22,7 +22,6 @@ int main()
             cin >> B[i];
         }
 
-        sort(A, A + N, greater<int>());
         sort(B, B + M);
 
         for (int i = 0; i < N; ++i)
