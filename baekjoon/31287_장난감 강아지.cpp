@@ -8,9 +8,9 @@ int main()
     cin >> N >> K;
     cin >> str;
 
-    if (K > 1000)
+    if (K > (N >> 1))
     {
-        K = 1000;
+        K = (N >> 1);
     }
     while (K--)
     {
