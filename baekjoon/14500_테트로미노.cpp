@@ -48,20 +48,6 @@ void input()
     }
 }
 
-bool isPossible(int tetrominoIdx, int y, int x)
-{
-    for (int i = 0; i < 4; ++i)
-    {
-        int ny = y + tetromino[tetrominoIdx][i].first;
-        int nx = x + tetromino[tetrominoIdx][i].second;
-        if (ny < 0 || nx < 0 || ny >= N || nx >= M)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
 int getSum(int tetrominoIdx, int y, int x)
 {
     int sum = 0;
@@ -69,7 +55,10 @@ int getSum(int tetrominoIdx, int y, int x)
     {
         int ny = y + tetromino[tetrominoIdx][i].first;
         int nx = x + tetromino[tetrominoIdx][i].second;
-
+        if (ny < 0 || nx < 0 || ny >= N || nx >= M)
+        {
+            return 0;
+        }
         sum += map[ny][nx];
     }
     return sum;
@@ -83,10 +72,6 @@ void solve()
         {
             for (int k = 0; k < TetrominoLen; ++k)
             {
-                if (!isPossible(k, i, j))
-                {
-                    continue;
-                }
                 answer = max(answer, getSum(k, i, j));
             }
         }
