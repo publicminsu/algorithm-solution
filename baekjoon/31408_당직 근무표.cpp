@@ -14,11 +14,7 @@ int main()
         maxCnt = max(maxCnt, ++cnt[j]);
     }
 
-    if (N & 1)
-    {
-        ++N;
-    }
-    N >>= 1;
+    N = (N + 1) >> 1;
 
     cout << (maxCnt > N ? "NO" : "YES"); // 절반보다 크면 불가능
     return 0;
