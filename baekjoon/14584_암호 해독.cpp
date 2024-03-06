@@ -15,7 +15,7 @@ int main()
     for (string &word : words)
     {
         cin >> word;
-        for (int i = 0; i < 26; ++i)
+        for (int i = 1; i <= 26; ++i)
         {
             for (char &c : word)
             {
@@ -30,7 +30,7 @@ int main()
             {
                 for (const char &c : password)
                 {
-                    cout << static_cast<char>(((c - 'a') - i + 25) % 26 + 'a');
+                    cout << static_cast<char>(((c - 'a') - i + 26) % 26 + 'a');
                 }
                 return 0;
             }
