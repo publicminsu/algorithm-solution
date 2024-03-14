@@ -10,16 +10,18 @@ int main()
     {
         answer = n / 5;
     }
-
-    while (n > 0)
+    else
     {
-        if (!(n % 2))
+        while (n > 0)
         {
-            answer = min(answer, n / 2 + cnt);
-        }
+            if (!(n % 2))
+            {
+                answer = n / 2 + cnt;
+            }
 
-        ++cnt;
-        n -= 5;
+            ++cnt;
+            n -= 5;
+        }
     }
 
     cout << (answer == 100000 ? -1 : answer);
