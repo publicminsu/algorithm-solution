@@ -5,13 +5,13 @@ using namespace std;
 using ll = long long;
 int M, N, cnt;
 ll answer, l, r, m;
-vector<ll> L;
+vector<int> L;
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
     cin >> M >> N;
-    L = vector<ll>(N);
-    for (ll &l : L)
+    L = vector<int>(N);
+    for (int &l : L)
     {
         cin >> l;
     }
@@ -28,7 +28,7 @@ int main()
             break;
         }
 
-        for (const ll &l : L)
+        for (const int &l : L)
         {
             cnt += l / m;
 
