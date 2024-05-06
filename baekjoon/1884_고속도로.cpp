@@ -45,7 +45,7 @@ void dijkstra()
         if (curIdx == N)
         {
             answer = min(answer, curLen);
-            continue;
+            return;
         }
 
         for (piii node : graph[curIdx])
