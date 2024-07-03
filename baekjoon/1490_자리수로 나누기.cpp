@@ -17,7 +17,7 @@ int main()
         bool isFind = true;
         for (int i = N.size(); i > 0; --i)
         {
-            int j = (cur[i - 1] - '0');
+            int j = (N[i - 1] - '0');
 
             if (j && (stoll(cur) % j))
             {
