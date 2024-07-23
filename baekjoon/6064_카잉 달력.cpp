@@ -16,7 +16,7 @@ int main()
                 cout << x << "\n";
                 break;
             }
-            else if (x > M * N || y > M * N)
+            else if (x > M * N)
             {
                 cout << -1 << "\n";
                 break;
