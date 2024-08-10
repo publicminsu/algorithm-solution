@@ -23,18 +23,19 @@ void input()
     }
 }
 
-bool dfs(int y, int x)
+void dfs(int y, int x)
 {
     if (isVisited[y][x])
     {
-        return false;
+        return;
     }
 
     isVisited[y][x] = true;
 
     if (y == N - 1)
     {
-        return true;
+        cout << "YES";
+        exit(0);
     }
 
     for (int i = 0; i < 4; ++i)
@@ -47,15 +48,8 @@ bool dfs(int y, int x)
             continue;
         }
 
-        bool value = dfs(ny, nx);
-
-        if (value)
-        {
-            return true;
-        }
+        dfs(ny, nx);
     }
-
-    return false;
 }
 
 int main()
@@ -64,11 +58,7 @@ int main()
 
     for (int i = 0; i < M; ++i)
     {
-        if (dfs(0, i))
-        {
-            cout << "YES";
-            return 0;
-        }
+        dfs(0, i);
     }
 
     cout << "NO";
