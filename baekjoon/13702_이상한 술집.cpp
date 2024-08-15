@@ -3,7 +3,7 @@
 using namespace std;
 using ll = long long;
 int N, K;
-ll l, m, r;
+ll l, m, r, answer;
 vector<ll> nums;
 int main()
 {
@@ -38,10 +38,11 @@ int main()
         }
         else
         {
+            answer = m;
             l = m + 1;
         }
     }
 
-    cout << r;
+    cout << answer;
     return 0;
 }
