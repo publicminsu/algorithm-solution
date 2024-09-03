@@ -1,25 +1,47 @@
 #include <iostream>
 #include <map>
+#include <queue>
+#include <vector>
 using namespace std;
+
 int N;
-map<string, string> m;
 string A, B;
+map<string, vector<string>> graph;
+
 bool isConnect(string x, string y)
 {
-    const string &nx = m[x];
+    map<string, bool> m;
+    queue<string> q;
 
-    if (nx.empty())
+    q.push(x);
+    m[x] = true;
+
+    while (!q.empty())
     {
-        return false;
+        string cur = q.front();
+        q.pop();
+
+        for (string next : graph[cur])
+        {
+            if (m[next])
+            {
+                continue;
+            }
+
+            m[next] = true;
+
+            if (next == y)
+            {
+                return true;
+            }
+
+            q.push(next);
+        }
     }
 
-    if (nx == y)
-    {
-        return true;
-    }
-
-    return isConnect(nx, y);
+    return false;
 }
+
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
@@ -29,11 +51,11 @@ int main()
     while (--N)
     {
         cin >> A >> B;
-        m[A] = B;
+        graph[B].push_back(A);
     }
 
     cin >> A >> B;
 
-    cout << (isConnect(A, B) || isConnect(B, A));
+    cout << (isConnect(B, A) || isConnect(A, B));
     return 0;
 }
