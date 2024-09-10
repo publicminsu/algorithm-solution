@@ -16,7 +16,7 @@ int main()
         int maxScore = score[i];
         int minScore = score[i];
 
-        for (int j = i - 1; j >= 0; --j)
+        for (int j = i - 2; j >= 0; --j)
         {
             maxScore = max(maxScore, score[j + 1]);
             minScore = min(minScore, score[j + 1]);
