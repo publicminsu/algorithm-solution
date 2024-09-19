@@ -1,8 +1,8 @@
 import math
 
 n, m, r = map(int, input().split())
-a = n + r - m * n - 1
 b = r - n * m
+a = n + b - 1
 
 if n*m > r:
     print(0)
