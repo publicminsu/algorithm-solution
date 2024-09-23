@@ -21,13 +21,13 @@ void input()
     }
 }
 
-int count(int num)
+int count(int flag)
 {
     int cnt = 0;
-    while (num)
+    while (flag)
     {
-        cnt += (num & 1);
-        num >>= 1;
+        cnt += (flag & 1);
+        flag >>= 1;
     }
     return cnt;
 }
