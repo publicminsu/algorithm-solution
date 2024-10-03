@@ -46,7 +46,7 @@ int find()
     }
 
     isVisited[N] = true;
-    q.push({N, 1});
+    q.push({N, 0});
 
     while (!q.empty())
     {
@@ -57,7 +57,7 @@ int find()
 
         if (num >= A && num <= B && !isNotPrime[num])
         {
-            return cur.second - 1;
+            return cur.second;
         }
 
         int nextCost = cur.second + 1;
