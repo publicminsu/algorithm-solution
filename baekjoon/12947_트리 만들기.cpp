@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-int N, sum, answer;
+int N, answer;
 vector<vector<int>> tree;
 
 void init()
@@ -18,12 +18,10 @@ void init()
         {
             if (depth)
             {
-                sum += depth;
                 tree.push_back({depth, depth});
                 depth = 0;
             }
 
-            sum += 1;
             tree.push_back({1});
         }
         else
@@ -32,7 +30,6 @@ void init()
 
             if (i == N - 1)
             {
-                sum += depth;
                 tree.push_back({depth, depth});
             }
         }
@@ -43,9 +40,9 @@ void solve()
 {
     for (int i = 0; i < tree.size(); ++i)
     {
-        answer = max(answer, sum + (tree[i].size() == 1 ? 0 : tree[i][0]));
+        answer = max(answer, N + (tree[i].size() == 1 ? 0 : tree[i][0]));
 
-        sum -= tree[i][0];
+        N -= tree[i][0];
     }
 }
 
