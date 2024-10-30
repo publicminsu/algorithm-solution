@@ -24,10 +24,7 @@ int sY, eY;
 bool bfs()
 {
     memset(isVisited, false, sizeof(isVisited));
-    while (!q.empty())
-    {
-        q.pop();
-    }
+    q = queue<node>();
 
     q.push({sX, sY, {sX}, {sY}});
 
