@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int arr[251][251][4]; // 기본, 가로 최소, 가로 최대, 답변
+int dp[251][251][3]; // 기본(답변으로 재활용), 가로 최소, 가로 최대
 int N, B, K;
 int main()
 {
@@ -12,7 +12,7 @@ int main()
     {
         for (int j = 0; j < N; ++j)
         {
-            cin >> arr[i][j][0];
+            cin >> dp[i][j][0];
         }
     }
 
@@ -20,12 +20,12 @@ int main()
     {
         for (int j = 0; j <= N - B; ++j)
         {
-            arr[i][j][2] = arr[i][j][1] = arr[i][j][0];
+            dp[i][j][2] = dp[i][j][1] = dp[i][j][0];
 
             for (int k = 1; k < B; ++k)
             {
-                arr[i][j][1] = min(arr[i][j][1], arr[i][j + k][0]);
-                arr[i][j][2] = max(arr[i][j][2], arr[i][j + k][0]);
+                dp[i][j][1] = min(dp[i][j][1], dp[i][j + k][0]);
+                dp[i][j][2] = max(dp[i][j][2], dp[i][j + k][0]);
             }
         }
     }
@@ -34,16 +34,16 @@ int main()
     {
         for (int j = 0; j < N; ++j)
         {
-            int minNum = arr[i][j][1];
-            int maxNum = arr[i][j][2];
+            int minNum = dp[i][j][1];
+            int maxNum = dp[i][j][2];
 
             for (int k = 1; k < B; ++k)
             {
-                minNum = min(minNum, arr[i + k][j][1]);
-                maxNum = max(maxNum, arr[i + k][j][2]);
+                minNum = min(minNum, dp[i + k][j][1]);
+                maxNum = max(maxNum, dp[i + k][j][2]);
             }
 
-            arr[i][j][3] = maxNum - minNum;
+            dp[i][j][0] = maxNum - minNum;
         }
     }
 
@@ -53,7 +53,7 @@ int main()
         cin >> i >> j;
         --i, --j;
 
-        cout << arr[i][j][3] << "\n";
+        cout << dp[i][j][0] << "\n";
     }
     return 0;
 }
