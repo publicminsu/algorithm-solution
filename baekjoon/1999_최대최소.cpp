@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int arr[251][251][3]; // 기본, 최소, 최대
+int arr[251][251][5]; // 기본, 가로 최소, 가로 최대, 최소, 최대
 int N, B, K;
 int main()
 {
@@ -30,20 +30,28 @@ int main()
         }
     }
 
+    for (int i = 0; i <= N - B; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            arr[i][j][3] = arr[i][j][1];
+            arr[i][j][4] = arr[i][j][2];
+
+            for (int k = 1; k < B; ++k)
+            {
+                arr[i][j][3] = min(arr[i][j][3], arr[i + k][j][1]);
+                arr[i][j][4] = max(arr[i][j][4], arr[i + k][j][2]);
+            }
+        }
+    }
+
     while (K--)
     {
-        int i, j, minNum = 251, maxNum = 0;
+        int i, j;
         cin >> i >> j;
-
         --i, --j;
 
-        for (int k = 0; k < B; ++k)
-        {
-            minNum = min(minNum, arr[i + k][j][1]);
-            maxNum = max(maxNum, arr[i + k][j][2]);
-        }
-
-        cout << (maxNum - minNum) << "\n";
+        cout << (arr[i][j][4] - arr[i][j][3]) << "\n";
     }
     return 0;
 }
