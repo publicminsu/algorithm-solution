@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 using pii = pair<int, int>;
 int N, answer, curX;
@@ -20,10 +19,9 @@ int main()
         cin >> p.second;
     }
 
-    reverse(XT.begin(), XT.end());
-
-    for (const pii &p : XT)
+    for (int i = N - 1; i >= 0; --i)
     {
+        const pii &p = XT[i];
         int diff = max(abs(p.first - curX), p.second - answer);
         answer += diff;
 
