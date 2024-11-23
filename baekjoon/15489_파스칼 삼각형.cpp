@@ -26,7 +26,7 @@ int main()
 
     for (int i = R; i < R + W; ++i)
     {
-        for (int j = C; j < C + i - R + 1; ++j)
+        for (int j = C; j <= C + i - R; ++j)
         {
             answer += dp[i][j];
         }
