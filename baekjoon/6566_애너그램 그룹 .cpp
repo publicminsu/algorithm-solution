@@ -7,15 +7,16 @@ using namespace std;
 string word;
 map<string, pair<string, vector<string>>> m;
 set<string> isVisited;
+vector<pair<string, vector<string>>> v;
 
-const bool compare(const pair<string, pair<string, vector<string>>> &a, const pair<string, pair<string, vector<string>>> &b)
+const bool compare(const pair<string, vector<string>> &a, const pair<string, vector<string>> &b)
 {
-    if (a.second.second.size() == b.second.second.size())
+    if (a.second.size() == b.second.size())
     {
-        return a.second.first < b.second.first;
+        return a.second[0] < b.second[0];
     }
 
-    return a.second.second.size() > b.second.second.size();
+    return a.second.size() > b.second.size();
 }
 
 void input()
@@ -43,19 +44,23 @@ void input()
 
 void solve()
 {
-    vector<pair<string, pair<string, vector<string>>>> v(m.begin(), m.end());
+    v.reserve(m.size());
+
+    for (auto &p : m)
+    {
+        sort(p.second.second.begin(), p.second.second.end());
+        v.push_back({p.first, p.second.second});
+    }
 
     sort(v.begin(), v.end(), compare);
 
     for (int i = 0; i < min(5, static_cast<int>(v.size())); ++i)
     {
-        auto p = v[i];
+        const auto &p = v[i];
 
-        sort(p.second.second.begin(), p.second.second.end());
+        cout << "Group of size " << p.second.size() << ": ";
 
-        cout << "Group of size " << p.second.second.size() << ": ";
-
-        for (auto s : p.second.second)
+        for (const auto &s : p.second)
         {
             if (isVisited.find(s) != isVisited.end())
             {
