@@ -18,7 +18,7 @@ const bool compare(const pair<string, pair<string, vector<string>>> &a, const pa
     return a.second.second.size() > b.second.second.size();
 }
 
-int main()
+void input()
 {
     ios::sync_with_stdio(0), cin.tie(0);
 
@@ -39,7 +39,10 @@ int main()
 
         m[word].second.push_back(w);
     }
+}
 
+void solve()
+{
     vector<pair<string, pair<string, vector<string>>>> v(m.begin(), m.end());
 
     sort(v.begin(), v.end(), compare);
@@ -64,5 +67,11 @@ int main()
         }
         cout << ".\n";
     }
+}
+
+int main()
+{
+    input();
+    solve();
     return 0;
 }
