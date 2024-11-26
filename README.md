@@ -3,4 +3,5 @@
 # 풀이
 https://velog.io/@publicminsu
 # 스트릭
-![mazandi profile](http://mazandi.herokuapp.com/api?handle=publicminsu&theme=dark)
+![mazandi profile](http://mazandi.herokuapp.com/api?handle=publicminsu&theme=dark)<br>
+https://solved.ac/profile/publicminsu
