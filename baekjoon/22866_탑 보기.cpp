@@ -35,10 +35,9 @@ void push(int i)
         else
         {
             int curIdx = i + 1;
-
             int nextIdx = s.top() + 1;
-            int nextLen = abs(curIdx - nextIdx);
 
+            int nextLen = abs(curIdx - nextIdx);
             int savedLen = abs(curIdx - idx[i]);
 
             if (savedLen > nextLen)
