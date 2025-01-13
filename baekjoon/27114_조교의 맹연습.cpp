@@ -1,15 +1,16 @@
 #include <iostream>
 #include <queue>
 using namespace std;
+#define MAX_SIZE 1000001
 struct node
 {
     int dir, cnt, energy;
 };
 int dx[] = {3, 1, 2};
 int abc[3];
-int K, answer = 1000001;
+int K, answer = MAX_SIZE;
 queue<node> q;
-bool isVisited[4][1000001];
+bool isVisited[4][MAX_SIZE];
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
@@ -57,6 +58,6 @@ int main()
         }
     }
 
-    cout << (answer == 1000001 ? -1 : answer);
+    cout << (answer == MAX_SIZE ? -1 : answer);
     return 0;
 }
