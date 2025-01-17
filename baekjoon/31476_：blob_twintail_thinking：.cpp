@@ -2,7 +2,7 @@
 using namespace std;
 int D, N, U, T;
 int totalCnt, twinSum, ponySum;
-bool isBlocked[4096][4096];
+bool isBlocked[4096];
 
 void input()
 {
@@ -12,7 +12,7 @@ void input()
     {
         int s, e;
         cin >> s >> e;
-        isBlocked[s][e] = true;
+        isBlocked[e] = true;
     }
 }
 
@@ -33,8 +33,8 @@ void twinRecur(int idx, int cnt, int sum)
     int rightIdx = leftIdx + 1;
     int nextCnt = cnt;
 
-    bool isBlockedLeft = isBlocked[idx][leftIdx];
-    bool isBlockedright = isBlocked[idx][rightIdx];
+    bool isBlockedLeft = isBlocked[leftIdx];
+    bool isBlockedright = isBlocked[rightIdx];
 
     if (!isBlockedLeft && !isBlockedright)
     {
@@ -68,8 +68,8 @@ int ponyRecur(int idx, int depth)
     int rightIdx = leftIdx + 1;
     int retDepth = depth;
 
-    bool isBlockedLeft = isBlocked[idx][leftIdx];
-    bool isBlockedright = isBlocked[idx][rightIdx];
+    bool isBlockedLeft = isBlocked[leftIdx];
+    bool isBlockedright = isBlocked[rightIdx];
 
     if (!isBlockedLeft)
     {
