@@ -31,8 +31,6 @@ void input()
 
 void solve()
 {
-    sort(counts.begin(), counts.end());
-
     int left = 0;
     int right = 10000000;
 
@@ -47,8 +45,7 @@ void solve()
 
             if (count > mid)
             {
-                sum += mid * (counts.size() - i);
-                break;
+                sum += mid;
             }
             else
             {
