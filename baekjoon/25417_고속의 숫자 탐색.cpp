@@ -6,7 +6,7 @@ using namespace std;
 int dy[] = {1, 0, -1, 0};
 int dx[] = {0, 1, 0, -1};
 int map[5][5];
-int countMap[5][5][4];
+int countMap[5][5];
 int r, c, answer = INF;
 void dfs(int y, int x, int count);
 
@@ -44,12 +44,12 @@ void walk(int y, int x, int dir, int nextCount)
         return;
     }
 
-    if (countMap[ny][nx][dir] && nextCount >= countMap[ny][nx][dir])
+    if (countMap[ny][nx] && nextCount >= countMap[ny][nx])
     {
         return;
     }
 
-    countMap[ny][nx][dir] = nextCount;
+    countMap[ny][nx] = nextCount;
 
     dfs(ny, nx, nextCount);
 }
@@ -68,12 +68,12 @@ void run(int y, int x, int dir, int nextCount)
 
         if (isOut(ny + dy[dir], nx + dx[dir]) || map[ny][nx] == 7)
         {
-            if (countMap[ny][nx][dir] && nextCount >= countMap[ny][nx][dir])
+            if (countMap[ny][nx] && nextCount >= countMap[ny][nx])
             {
                 break;
             }
 
-            countMap[ny][nx][dir] = nextCount;
+            countMap[ny][nx] = nextCount;
             dfs(ny, nx, nextCount);
 
             break;
