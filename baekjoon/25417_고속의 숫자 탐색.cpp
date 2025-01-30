@@ -83,6 +83,11 @@ void run(int y, int x, int dir, int nextCount)
 
 void dfs(int y, int x, int count)
 {
+    if (count >= answer)
+    {
+        return;
+    }
+
     if (map[y][x] == 1)
     {
         answer = min(answer, count);
