@@ -1,10 +1,8 @@
 #include <iostream>
-#include <stack>
 using namespace std;
 
 int N, answer;
 char X[10000000];
-bool carry;
 
 int main()
 {
@@ -19,20 +17,18 @@ int main()
 
     for (int i = N - 1; i >= 1; --i)
     {
-        if (carry)
+        if (answer)
         {
             if (X[i] == '0')
             {
                 ++answer;
-                carry = true;
             }
         }
         else
         {
             if (X[i] == '1')
             {
-                ++answer;
-                carry = true;
+                answer = 1;
             }
         }
     }
