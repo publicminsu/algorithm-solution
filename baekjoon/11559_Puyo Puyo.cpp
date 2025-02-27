@@ -101,16 +101,13 @@ void move()
         {
             char target = map[i][j];
 
-            if (target)
+            for (int k = i + 1; k >= 0; ++k)
             {
-                for (int k = i + 1; k >= 0; ++k)
+                if (map[k][j] != '.')
                 {
-                    if (map[k][j] != '.')
-                    {
-                        map[i][j] = '.';
-                        map[k - 1][j] = target;
-                        break;
-                    }
+                    map[i][j] = '.';
+                    map[k - 1][j] = target;
+                    break;
                 }
             }
         }
