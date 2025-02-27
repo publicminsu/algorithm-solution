@@ -101,6 +101,11 @@ void move()
         {
             char target = map[i][j];
 
+            if (target == '.')
+            {
+                continue;
+            }
+
             for (int k = i + 1; k >= 0; ++k)
             {
                 if (map[k][j] != '.')
