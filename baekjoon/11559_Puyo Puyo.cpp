@@ -106,15 +106,20 @@ void move()
                 continue;
             }
 
-            for (int k = i + 1; k >= 0; ++k)
+            int k;
+
+            for (k = i + 1; k < 12; ++k)
             {
                 if (map[k][j] != '.')
                 {
-                    map[i][j] = '.';
-                    map[k - 1][j] = target;
                     break;
                 }
             }
+
+            --k;
+
+            map[i][j] = '.';
+            map[k][j] = target;
         }
     }
 }
