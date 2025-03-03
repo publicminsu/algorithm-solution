@@ -57,8 +57,6 @@ void bfs(queue<pii> q)
         q.push(cur);
     }
 
-    int lastCount = 1;
-
     while (!q.empty())
     {
         pii cur = q.front();
