@@ -46,6 +46,10 @@ int main()
 
     cin >> N;
 
+    int maxSize = N * (N + 1) / 2;
+    usedRoads.reserve(maxSize);
+    roadInfos.reserve(maxSize);
+
     for (int i = 1; i <= N; ++i)
     {
         parents[i] = i;
