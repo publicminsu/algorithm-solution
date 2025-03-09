@@ -18,13 +18,13 @@ int main()
 
     sort(V, V + N, greater<int>());
 
-    int idx = 0;
+    int cnt = 0;
 
     while (sum > sumOfSupporters * 2)
     {
-        sumOfSupporters += V[idx++];
+        sumOfSupporters += V[cnt++];
     }
 
-    cout << M / (idx + 1);
+    cout << M / (cnt + 1);
     return 0;
 }
