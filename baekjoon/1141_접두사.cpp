@@ -31,11 +31,6 @@ int main()
             string str1 = arr[i];
             string str2 = v[j];
 
-            if (str1.length() > str2.length())
-            {
-                swap(str1, str2);
-            }
-
             bool isFind = true;
 
             for (int k = 0; k < str1.length(); ++k)
