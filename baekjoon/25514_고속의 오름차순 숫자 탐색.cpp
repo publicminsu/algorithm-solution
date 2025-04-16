@@ -11,7 +11,7 @@ struct node
 int board[5][5];
 int r, c;
 int dy[] = {0, 0, 1, -1}, dx[] = {1, -1, 0, 0};
-int cntBoard[5][5][7];
+bool visitedBoard[5][5][7];
 queue<node> q;
 
 void input()
@@ -23,11 +23,6 @@ void input()
         for (int j = 0; j < 5; ++j)
         {
             cin >> board[i][j];
-
-            for (int k = 0; k < 7; ++k)
-            {
-                cntBoard[i][j][k] = INF;
-            }
         }
     }
 
@@ -63,14 +58,14 @@ int bfs()
             }
         }
 
-        int &cnt = cntBoard[curNode.y][curNode.x][curNode.num];
+        bool &isVisited = visitedBoard[curNode.y][curNode.x][curNode.num];
 
-        if (cnt != INF)
+        if (isVisited)
         {
             continue;
         }
 
-        cnt = curNode.cnt;
+        isVisited = true;
 
         for (int i = 0; i < 4; ++i)
         {
