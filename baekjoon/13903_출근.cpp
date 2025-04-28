@@ -33,7 +33,7 @@ void input()
     }
 }
 
-int bfs()
+void bfs()
 {
     for (int i = 0; i < C; ++i)
     {
@@ -66,18 +66,11 @@ int bfs()
                 continue;
             }
 
-            if (cur.first == R - 1)
-            {
-                return cnt[cur.first][cur.second] + 1;
-            }
-
             value = cnt[cur.first][cur.second] + 1;
 
             q.push({ny, nx});
         }
     }
-
-    return -1;
 }
 
 int main()
