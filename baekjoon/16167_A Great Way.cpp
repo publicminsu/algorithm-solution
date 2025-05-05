@@ -9,7 +9,7 @@ using piiii = pair<pii, pii>;
 int N, R;
 vector<vector<pii>> graph;
 priority_queue<piiii, vector<piiii>, greater<piiii>> pq;
-vector<int> dist;
+vector<bool> isVisited;
 
 void input()
 {
@@ -17,7 +17,7 @@ void input()
     cin >> N >> R;
 
     graph = vector<vector<pii>>(N + 1, vector<pii>());
-    dist = vector<int>(N + 1, -1);
+    isVisited = vector<bool>(N + 1, 0);
 
     while (R--)
     {
@@ -48,18 +48,16 @@ void dijkstra()
         pii curValue = curNode.first;
         pii curPos = curNode.second;
 
-        int &d = dist[curPos.second];
-
-        if (d != -1)
+        if (isVisited[curPos.second])
         {
             continue;
         }
 
-        d = curValue.first;
+        isVisited[curPos.second] = true;
 
         if (curPos.second == N)
         {
-            cout << d << " " << curValue.second;
+            cout << curValue.first << " " << curValue.second;
             return;
         }
 
