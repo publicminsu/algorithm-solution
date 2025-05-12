@@ -14,8 +14,8 @@ int calcDy(int i, int j)
 
 int calcLengthSqr(int i, int j)
 {
-    double dx = calcDx(i, j);
-    double dy = calcDy(i, j);
+    int dx = calcDx(i, j);
+    int dy = calcDy(i, j);
 
     return dx * dx + dy * dy;
 }
@@ -35,9 +35,9 @@ int main()
     }
     else
     {
-        double lengthSqr01 = calcLengthSqr(0, 1);
-        double lengthSqr12 = calcLengthSqr(1, 2);
-        double lengthSqr20 = calcLengthSqr(2, 0);
+        int lengthSqr01 = calcLengthSqr(0, 1);
+        int lengthSqr12 = calcLengthSqr(1, 2);
+        int lengthSqr20 = calcLengthSqr(2, 0);
 
         bool sameLength012 = lengthSqr01 == lengthSqr12;
         bool sameLength120 = lengthSqr12 == lengthSqr20;
