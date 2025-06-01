@@ -3,7 +3,7 @@ using namespace std;
 
 int N, M;
 int nums[1000][1000];
-int dp[1000][1000];
+int dp[2][1000];
 int tmp[2][1000];
 
 int main()
@@ -27,27 +27,29 @@ int main()
 
     for (int i = 1; i < N; ++i)
     {
+        int prevI = (i + 1) % 2;
+
         // 왼->오
-        tmp[0][0] = nums[i][0] + dp[i - 1][0];
+        tmp[0][0] = nums[i][0] + dp[prevI][0];
         for (int j = 1; j < M; ++j)
         {
-            tmp[0][j] = nums[i][j] + max(dp[i - 1][j], tmp[0][j - 1]);
+            tmp[0][j] = nums[i][j] + max(dp[prevI][j], tmp[0][j - 1]);
         }
 
         // 오->왼
-        tmp[1][M - 1] = nums[i][M - 1] + dp[i - 1][M - 1];
+        tmp[1][M - 1] = nums[i][M - 1] + dp[prevI][M - 1];
         for (int j = M - 2; j >= 0; --j)
         {
-            tmp[1][j] = nums[i][j] + max(dp[i - 1][j], tmp[1][j + 1]);
+            tmp[1][j] = nums[i][j] + max(dp[prevI][j], tmp[1][j + 1]);
         }
 
         // 최댓값
         for (int j = 0; j < M; ++j)
         {
-            dp[i][j] = max(tmp[0][j], tmp[1][j]);
+            dp[i % 2][j] = max(tmp[0][j], tmp[1][j]);
         }
     }
 
-    cout << dp[N - 1][M - 1];
+    cout << dp[(N - 1) % 2][M - 1];
     return 0;
 }
