@@ -1,13 +1,9 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
 
 using namespace std;
-using pii = pair<int, int>;
 
 int prices[100000];
-pii piis[100000];
-int N, lastIndex, profit;
+int N, maxPrice, profit;
 
 int main()
 {
@@ -18,22 +14,16 @@ int main()
     for (int i = 0; i < N; ++i)
     {
         cin >> prices[i];
-        piis[i] = {prices[i], i};
     }
 
-    sort(piis, piis + N, greater<>());
-
-    for (int i = 0; i < N; ++i)
+    for (int i = N - 1; i >= 0; --i)
     {
-        int idx = piis[i].second;
-        int price = piis[i].first;
-
-        for (int j = lastIndex; j < idx; ++j)
+        if (maxPrice < prices[i])
         {
-            profit += price - prices[j];
+            maxPrice = prices[i];
         }
 
-        lastIndex = max(lastIndex, idx + 1);
+        profit += maxPrice - prices[i];
     }
 
     cout << profit;
