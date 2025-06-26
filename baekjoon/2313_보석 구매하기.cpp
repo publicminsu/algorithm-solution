@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-#define MAX_SIZE 1002
-
 struct index
 {
     int left, right;
@@ -21,7 +19,7 @@ int main()
     {
         cin >> L;
 
-        int prefixSum = 0;
+        int sum = 0;
         int maxSum = -987654321;
 
         for (int j = 1, num; j <= L; ++j)
@@ -29,20 +27,20 @@ int main()
             index idx;
             cin >> num;
 
-            if (prefixSum > 0)
+            if (sum > 0)
             {
                 idx.right = j;
             }
             else
             {
-                prefixSum = 0;
+                sum = 0;
                 idx.left = j;
                 idx.right = j;
             }
 
-            prefixSum = prefixSum + num;
+            sum = sum + num;
 
-            if (maxSum == prefixSum)
+            if (maxSum == sum)
             {
                 index &maxSumIdx = indexes[i];
 
@@ -51,10 +49,10 @@ int main()
                     maxSumIdx = idx;
                 }
             }
-            else if (maxSum < prefixSum)
+            else if (maxSum < sum)
             {
                 indexes[i] = idx;
-                maxSum = prefixSum;
+                maxSum = sum;
             }
         }
 
