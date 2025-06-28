@@ -4,7 +4,7 @@
 using namespace std;
 
 int n, m;
-vector<vector<char>> boards;
+char board[20][20];
 bool isUsed[20][20];
 
 struct colorInfo
@@ -35,12 +35,11 @@ void input()
 
     cin >> n >> m >> blackInfo.cost >> whiteInfo.cost;
 
-    boards = vector<vector<char>>(n, vector<char>(m));
     for (int i = 0; i < n; ++i)
     {
         for (int j = 0; j < m; ++j)
         {
-            cin >> boards[i][j];
+            cin >> board[i][j];
         }
     }
 }
@@ -57,7 +56,7 @@ int paint(int len, int y, int x, colorInfo info)
             int nx = j + x;
 
             isUsed[ny][nx] = true;
-            if (boards[ny][nx] != info.color)
+            if (board[ny][nx] != info.color)
             {
                 totalCost += info.cost;
             }
@@ -92,7 +91,7 @@ int calculateCost(int len, int y, int x)
                 continue;
             }
 
-            if (boards[i][j] != whiteInfo.color)
+            if (board[i][j] != whiteInfo.color)
             {
                 totalCost += whiteInfo.cost;
             }
