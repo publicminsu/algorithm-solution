@@ -2,10 +2,6 @@
 #include <cstring>
 using namespace std;
 
-int n, m;
-char board[20][20];
-bool isUsed[20][20];
-
 struct colorInfo
 {
     char color;
@@ -18,6 +14,10 @@ struct blueprintInfo
     int x;
     const colorInfo &info;
 };
+
+int n, m;
+char board[20][20];
+bool isUsed[20][20];
 
 colorInfo blackInfo, whiteInfo;
 
