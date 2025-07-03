@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int a, branch, x, y;
+int a, branch, splittingFactor, pruning;
 int main()
 {
     ios::sync_with_stdio(0), cin.tie(0);
@@ -18,9 +18,9 @@ int main()
 
         while (a--)
         {
-            cin >> x >> y;
-            branch *= x;
-            branch -= y;
+            cin >> splittingFactor >> pruning;
+            branch *= splittingFactor;
+            branch -= pruning;
         }
 
         cout << branch << "\n";
