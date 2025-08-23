@@ -39,7 +39,7 @@ int main()
     }
     else
     {
-        if (oddCount > N || (oddCount % 2 && oddCount % 2 != N % 2) || (M % 2 == 0 & oddCount > 0))
+        if (oddCount > N || (oddCount % 2 && N % 2 != 1) || (M % 2 == 0 & oddCount > 0))
         {
             cout << "NO";
         }
