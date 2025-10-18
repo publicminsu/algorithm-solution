@@ -22,7 +22,7 @@ void clear()
     }
 }
 
-void solve()
+void input()
 {
     cin >> n;
 
@@ -33,7 +33,10 @@ void solve()
 
         programs[program.s + program.d].push_back(program);
     }
+}
 
+void solve()
+{
     for (int i = 0; i <= MAX_SIZE; ++i)
     {
         dp[i] = dp[i - 1];
@@ -54,6 +57,7 @@ int main()
     while (t--)
     {
         clear();
+        input();
         solve();
     }
 }
