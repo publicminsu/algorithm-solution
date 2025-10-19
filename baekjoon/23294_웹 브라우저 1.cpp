@@ -54,7 +54,7 @@ void visitPage()
     currentPage = nextPage;
     currentCache += CAP[currentPage];
 
-    while (currentCache > C && !backHistory.empty())
+    while (currentCache > C)
     {
         int page = backHistory.front();
         backHistory.pop_front();
