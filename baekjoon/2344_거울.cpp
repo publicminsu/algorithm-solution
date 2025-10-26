@@ -5,8 +5,8 @@ using namespace std;
 int N, M;
 int map[1000][1000];
 
-int dy[] = {0, -1, 0, 1};
-int dx[] = {1, 0, -1, 0};
+int dy[] = {0, -1};
+int dx[] = {1, 0};
 
 int answers[4001];
 
@@ -39,15 +39,7 @@ int dfs(int y, int x, int dir)
 
     if (map[y][x])
     {
-        switch (dir)
-        {
-        case 0:
-            dir = 1;
-            break;
-        case 1:
-            dir = 0;
-            break;
-        }
+        dir = (dir + 1) % 2;
     }
 
     return dfs(y + dy[dir], x + dx[dir], dir);
