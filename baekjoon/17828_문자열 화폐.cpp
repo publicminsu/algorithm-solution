@@ -10,7 +10,7 @@ int main()
     ios::sync_with_stdio(0), cin.tie(0);
     cin >> N >> X;
 
-    if (N > X)
+    if (N > X || N * 26 < X)
     {
         cout << '!';
         return 0;
@@ -44,17 +44,10 @@ int main()
         }
     }
 
-    if (X == 0 && st.size() == N)
+    while (!st.empty())
     {
-        while (!st.empty())
-        {
-            cout << st.top();
-            st.pop();
-        }
-    }
-    else
-    {
-        cout << '!';
+        cout << st.top();
+        st.pop();
     }
     return 0;
 }
