@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+using ll = long long;
+
+ll gcd(ll a, ll b)
+{
+    if (b == 0)
+    {
+        return a;
+    }
+
+    return gcd(b, a % b);
+}
+
+int main()
+{
+    ios::sync_with_stdio(0), cin.tie(0);
+    ll A, B;
+    cin >> A >> B;
+    cout << ((A * B) / gcd(A, B));
+    return 0;
+}
