@@ -22,7 +22,7 @@ int main()
                 ll num = i;
                 int exp = 1;
 
-                while (num < x && exp < 32)
+                while (num < x)
                 {
                     num *= i;
                     ++exp;
@@ -41,7 +41,7 @@ int main()
                 ll num = -i;
                 int exp = 1;
 
-                while (llabs(num) < llabs(x) && exp < 32)
+                while (llabs(num) < llabs(x))
                 {
                     num *= -i;
                     ++exp;
