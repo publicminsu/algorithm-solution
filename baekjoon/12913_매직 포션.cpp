@@ -68,7 +68,7 @@ void dijkstra()
             }
 
             pq.push({{curTime + cost[idx][i], cnt}, i});
-            if (cnt + 1 <= K)
+            if (cnt < K)
             {
                 pq.push({{curTime + static_cast<double>(cost[idx][i]) / 2, cnt + 1}, i});
             }
