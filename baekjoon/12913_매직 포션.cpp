@@ -7,20 +7,12 @@ using pdiii = pair<pdi, int>;
 
 int N, K;
 int cost[50][50];
-double minTime[50][51];
+bool isVisited[50][51];
 
 void input()
 {
     ios::sync_with_stdio(0), cin.tie(0);
     cin >> N >> K;
-
-    for (int i = 0; i < N; ++i)
-    {
-        for (int j = 0; j <= K; ++j)
-        {
-            minTime[i][j] = -1;
-        }
-    }
 
     for (int i = 0; i < N; ++i)
     {
@@ -47,12 +39,12 @@ void dijkstra()
         int cnt = curNode.first.second;
         int idx = curNode.second;
 
-        if (minTime[idx][cnt] != -1)
+        if (isVisited[idx][cnt])
         {
             continue;
         }
 
-        minTime[idx][cnt] = curTime;
+        isVisited[idx][cnt] = true;
 
         if (idx == 1)
         {
