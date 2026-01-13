@@ -28,6 +28,9 @@ int main()
             {
                 isSeq = false;
             }
+
+            prevNum = num;
+            num = nextNum;
         }
 
         if (isSeq)
