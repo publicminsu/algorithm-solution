@@ -1,0 +1,23 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int N;
+int nums[1000000];
+
+int main()
+{
+    ios::sync_with_stdio(0), cin.tie(0);
+    cin >> N;
+    for (int i = 0; i < N; ++i)
+    {
+        cin >> nums[i];
+    }
+    sort(nums, nums + N, greater<int>());
+    for (int i = 0; i < N; ++i)
+    {
+        cout << nums[i] << "\n";
+    }
+    return 0;
+}
