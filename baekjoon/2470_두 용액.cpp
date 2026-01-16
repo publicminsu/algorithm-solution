@@ -27,15 +27,15 @@ int main()
         int leftNum = nums[leftIdx];
         int rightNum = nums[rightIdx];
 
-        int diff = (leftNum + rightNum);
+        int sum = (leftNum + rightNum);
 
-        if (abs(answer[0] + answer[1]) > abs(diff))
+        if (abs(answer[0] + answer[1]) > abs(sum))
         {
             answer[0] = leftNum;
             answer[1] = rightNum;
         }
 
-        if (diff < 0)
+        if (sum < 0)
         {
             ++leftIdx;
         }
